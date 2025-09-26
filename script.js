@@ -3,34 +3,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const message = document.getElementById('message');
 
     // Credenciales Fijas (SOLO para DEMOSTRACIÓN)
-    const USER_CORRECTO = 'admin';
+    const EMAIL_CORRECTO = 'usuario@ejemplo.com'; // ¡Hemos cambiado esto!
     const PASS_CORRECTA = '12345';
 
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+        event.preventDefault();
 
-        const username = document.getElementById('username').value.trim();
+        // Ahora buscamos el valor del campo 'email'
+        const email = document.getElementById('email').value.trim(); 
         const password = document.getElementById('password').value.trim();
         
-        message.textContent = ''; // Limpia el mensaje anterior
+        message.textContent = ''; 
 
-        if (username === USER_CORRECTO && password === PASS_CORRECTA) {
-            // Éxito: Simula el redireccionamiento
+        // Lógica de validación con el correo
+        if (email === EMAIL_CORRECTO && password === PASS_CORRECTA) {
+            // Éxito
             message.textContent = '¡Acceso Concedido! Redirigiendo...';
             message.style.color = 'green';
             
-            // Redirecciona después de 1 segundo (simulación)
             setTimeout(() => {
-                alert('Bienvenido al sistema!'); 
-                // window.location.href = 'pagina_principal.html'; // Descomenta para redirigir
+                alert('Bienvenido al sistema con el correo: ' + email); 
+                // window.location.href = 'pagina_principal.html'; 
             }, 1000);
 
-        } else if (username === '' || password === '') {
-             message.textContent = 'Por favor, completa ambos campos.';
+        } else if (email === '' || password === '') {
+             message.textContent = 'Por favor, completa el correo y la contraseña.';
              message.style.color = 'red';
         } else {
-            // Error: Credenciales incorrectas
-            message.textContent = 'Usuario o contraseña incorrectos.';
+            // Error
+            message.textContent = 'Correo electrónico o contraseña incorrectos.';
             message.style.color = 'red';
         }
     });
